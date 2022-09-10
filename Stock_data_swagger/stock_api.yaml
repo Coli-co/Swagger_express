@@ -1,0 +1,12 @@
+swagger: "2.0"
+info:
+  title: Top 20 Securities by Trading Volume
+  description: "This is one day top 20 Securities by trading volume. You can find out more about data at [TWSE](https://www.twse.com.tw/zh/page/trading/exchange/MI_INDEX20.html). For this sample, you can use the api key to test the results."
+  version: "1.0"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+schemes: [http, https]
