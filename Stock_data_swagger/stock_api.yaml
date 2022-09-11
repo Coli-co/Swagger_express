@@ -64,6 +64,28 @@ paths:
           description: "Invalid stock code supplied"
         404:
           description: "Stock code not found"
+  # Post stock data
+  /stock/create:
+    post:
+      summary: Add a new stock data.
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - in: body
+          name: body
+          description: Stock object that needs to be added.
+          required: true
+          schema:
+            $ref: "#/definitions/EachStock"
+      responses:
+        200:
+          description: OK
+        405:
+          description: "Invalid input"
 
 demo:
   type: array
@@ -126,3 +148,30 @@ definitions:
           type: string
         "最後揭示賣價":
           type: string
+  EachStock:
+    type: object
+    properties:
+      "排名":
+        type: integer
+      "證券代號":
+        type: string
+      "證券名稱":
+        type: string
+      "成交股數":
+        type: string
+      "成交筆數":
+        type: string
+      "開盤價":
+        type: string
+      "最高價":
+        type: string
+      "最低價":
+        type: string
+      "收盤價":
+        type: string
+      "漲跌價差":
+        type: string
+      "最後揭示買價":
+        type: string
+      "最後揭示賣價":
+        type: string
