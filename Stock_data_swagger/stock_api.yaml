@@ -10,3 +10,119 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
 schemes: [http, https]
+
+paths:
+  # Return all data
+  /stock:
+    get:
+      summary: All rank of stock.
+      description: Return all data of stock.
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#demo"
+
+  #  Return rank
+  /stock/{rank}:
+    get:
+      summary: Find stock by rank.
+      description: Return single array of stock
+      parameters:
+        - name: "排名"
+          in: path
+          description: Rank of stock data to return
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Stock"
+        400:
+          description: "Invalid rank supplied"
+        404:
+          description: "Stock not found"
+
+  # Return stock data by number
+  /stock/{stockCode}:
+    get:
+      summary: Find stock by stock code.
+      description: Return single array of stock
+      parameters:
+        - name: "證券代號"
+          in: path
+          description: Rank of stock code to return
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Stock"
+        400:
+          description: "Invalid stock code supplied"
+        404:
+          description: "Stock code not found"
+
+demo:
+  type: array
+  items:
+    type: object
+    properties:
+      "排名":
+        type: integer
+      "證券代號":
+        type: string
+      "證券名稱":
+        type: string
+      "成交股數":
+        type: string
+      "成交筆數":
+        type: string
+      "開盤價":
+        type: string
+      "最高價":
+        type: string
+      "最低價":
+        type: string
+      "收盤價":
+        type: string
+      "漲跌價差":
+        type: string
+      "最後揭示買價":
+        type: string
+      "最後揭示賣價":
+        type: string
+
+definitions:
+  Stock:
+    type: array
+    items:
+      type: object
+      properties:
+        "排名":
+          type: integer
+          example: 1
+        "證券代號":
+          type: string
+        "證券名稱":
+          type: string
+        "成交股數":
+          type: string
+        "成交筆數":
+          type: string
+        "開盤價":
+          type: string
+        "最高價":
+          type: string
+        "最低價":
+          type: string
+        "收盤價":
+          type: string
+        "漲跌價差":
+          type: string
+        "最後揭示買價":
+          type: string
+        "最後揭示賣價":
+          type: string

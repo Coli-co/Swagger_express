@@ -280,3 +280,7 @@ const data = [
     '最後揭示賣價': '60.90'
   }
 ]
+
+
+module.exports = { stockData : data }
+

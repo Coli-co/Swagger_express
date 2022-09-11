@@ -3,7 +3,7 @@ const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
 const swaggerJsDocs = YAML.load('./stock_api.yaml')
 const app = express()
-
+const stockAllData = require('./stock_clean_data.js')
 
 app.use(express.json())
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDocs))
