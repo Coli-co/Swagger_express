@@ -11,10 +11,29 @@ info:
 
 schemes: [http, https]
 
+tags:
+  - name: Overall
+    description: Main part of stock data
+    externalDocs:
+      description: Find out more
+      url: "https://www.twse.com.tw/zh/"
+  - name: Rank
+    description: Operations about stock data by rank
+    externalDocs:
+      description: Find out more
+      url: "https://www.twse.com.tw/zh/"
+  - name: Stock Code
+    description: Operations about stock data by stock code
+    externalDocs:
+      description: Find out more
+      url: "https://www.twse.com.tw/zh/"
+
 paths:
   # Return all data (get)
   /stock:
     get:
+      tags:
+        - Overall
       summary: All rank of stock.
       description: Return all data of stock.
       responses:
@@ -27,6 +46,8 @@ paths:
   /stock/{rank}:
     # Get data
     get:
+      tags:
+        - Rank
       summary: Find stock by rank
       description: Return single array of stock
       parameters:
@@ -46,6 +67,8 @@ paths:
           description: "Stock not found"
     # Post data
     post:
+      tags:
+        - Rank
       summary: Update stock data by rank
       consumes:
         - "application/json"
@@ -75,6 +98,8 @@ paths:
           description: "Invalid input"
     # Put data
     put:
+      tags:
+        - Rank
       summary: Update existing stock data by rank
       consumes:
         - "application/json"
@@ -105,6 +130,8 @@ paths:
           description: "Validation exception"
     # Delete data
     delete:
+      tags:
+        - Rank
       summary: Delete stock data by rank
       description:
       produces:
@@ -126,6 +153,8 @@ paths:
   /stock/{stockCode}:
     # Get data
     get:
+      tags:
+        - Stock Code
       summary: Find stock by stock code
       description: Return single array of stock
       parameters:
@@ -145,6 +174,8 @@ paths:
           description: "Stock code not found"
     # Post data
     post:
+      tags:
+        - Stock Code
       summary: Update stock data by stock code
       consumes:
         - "application/json"
@@ -173,6 +204,8 @@ paths:
           description: "Invalid input"
     # Put data
     put:
+      tags:
+        - Stock Code
       summary: Update existing stock data by stock code
       consumes:
         - "application/json"
@@ -203,6 +236,8 @@ paths:
           description: "Validation exception"
     # Delete data
     delete:
+      tags:
+        - Stock Code
       summary: Delete stock data
       description:
       produces:
@@ -223,6 +258,8 @@ paths:
   # Add a new stock data (post)
   /stock/create:
     post:
+      tags:
+        - Overall
       summary: Add a new stock data.
       consumes:
         - "application/json"
