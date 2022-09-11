@@ -103,7 +103,7 @@ paths:
         405:
           description: "Validation exception"
 
-  # Return stock data by number (get)
+  # Return stock data by number (get, post, put)
   /stock/{stockCode}:
     get:
       summary: Find stock by stock code.
@@ -123,6 +123,64 @@ paths:
           description: "Invalid stock code supplied"
         404:
           description: "Stock code not found"
+    # Post stock data by stock code
+    post:
+      summary: Update stock data by stock code.
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - name: "排名"
+          in: path
+          description: Rank of stock that needs to be updated.
+          type: integer
+        - name: "證券代號"
+          in: formData
+          description: Update data of the stock code.
+          required: true
+          type: string
+        - name: "證券名稱"
+          in: formData
+          description: Update data of the stock name.
+          type: string
+      responses:
+        200:
+          description: OK
+        405:
+          description: "Invalid input"
+    # Update stock data by stock code
+    put:
+      summary: Update existing stock data.
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - name: "證券代號"
+          in: path
+          description: Stock code that needs to be updated.
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Updated stock object
+          required: true
+          schema:
+            $ref: "#/definitions/EachStock"
+      responses:
+        200:
+          description: OK
+        400:
+          description: "Invalid stock code supplied"
+        404:
+          description: "Stock not found"
+        405:
+          description: "Validation exception"
 
   # Post stock data (post)
   /stock/create:
@@ -146,6 +204,8 @@ paths:
           description: OK
         405:
           description: "Invalid input"
+
+  # Delete stock data
 
 demo:
   type: array
