@@ -12,7 +12,7 @@ info:
 schemes: [http, https]
 
 paths:
-  # Return all data
+  # Return all data (get)
   /stock:
     get:
       summary: All rank of stock.
@@ -23,7 +23,7 @@ paths:
           schema:
             $ref: "#demo"
 
-  #  Return rank
+  #  Return rank (get, post, put)
   /stock/{rank}:
     get:
       summary: Find stock by rank.
@@ -72,8 +72,38 @@ paths:
           description: OK
         405:
           description: "Invalid input"
+    # Update stock data
+    put:
+      summary: Update existing stock data.
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - name: "排名"
+          in: path
+          description: Rank that needs to be updated.
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Updated stock object
+          required: true
+          schema:
+            $ref: "#/definitions/EachStock"
+      responses:
+        200:
+          description: OK
+        400:
+          description: "Invalid rank supplied"
+        404:
+          description: "Stock not found"
+        405:
+          description: "Validation exception"
 
-  # Return stock data by number
+  # Return stock data by number (get)
   /stock/{stockCode}:
     get:
       summary: Find stock by stock code.
@@ -94,7 +124,7 @@ paths:
         404:
           description: "Stock code not found"
 
-  # Post stock data
+  # Post stock data (post)
   /stock/create:
     post:
       summary: Add a new stock data.
@@ -116,33 +146,6 @@ paths:
           description: OK
         405:
           description: "Invalid input"
-
-  # Update stock data
-  /stock/update:
-    put:
-      summary: Update a existing stock data.
-      consumes:
-        - "application/json"
-        - "application/xml"
-      produces:
-        - "application/json"
-        - "application/xml"
-      parameters:
-        - in: body
-          name: body
-          description: Stock object that needs to be added.
-          required: true
-          schema:
-            $ref: "#/definitions/EachStock"
-      responses:
-        200:
-          description: OK
-        400:
-          description: "Invalid rank supplied"
-        404:
-          description: "Stock not found"
-        405:
-          description: "Validation exception"
 
 demo:
   type: array
