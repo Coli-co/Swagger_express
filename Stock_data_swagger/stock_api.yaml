@@ -43,6 +43,35 @@ paths:
           description: "Invalid rank supplied"
         404:
           description: "Stock not found"
+    # Post stock data by rank
+    post:
+      summary: Update stock data by rank.
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - name: "排名"
+          in: path
+          description: Rank of stock that needs to be updated.
+          required: true
+          type: integer
+          enum: [1, 2, 3, 4, 5]
+        - name: "證券代號"
+          in: formData
+          description: Update data of the stock code.
+          type: string
+        - name: "證券名稱"
+          in: formData
+          description: Update data of the stock name.
+          type: string
+      responses:
+        200:
+          description: OK
+        405:
+          description: "Invalid input"
 
   # Return stock data by number
   /stock/{stockCode}:
@@ -64,6 +93,7 @@ paths:
           description: "Invalid stock code supplied"
         404:
           description: "Stock code not found"
+
   # Post stock data
   /stock/create:
     post:
