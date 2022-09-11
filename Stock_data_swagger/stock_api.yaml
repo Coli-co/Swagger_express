@@ -55,7 +55,8 @@ paths:
           in: path
           description: Rank of stock data to return
           required: true
-          type: integer
+          $ref: "#/definitions/Rank"
+
       responses:
         200:
           description: Success
@@ -77,20 +78,21 @@ paths:
         - "application/json"
         - "application/xml"
       parameters:
-        - name: "排名"
-          in: path
+        - in: path
+          name: "排名"
           description: Rank of stock that needs to be updated.
           required: true
-          type: integer
-          enum: [1, 2, 3, 4, 5]
+          $ref: "#/definitions/Rank"
         - name: "證券代號"
           in: formData
           description: Update data of the stock code.
           type: string
+          $ref: "#/definitions/StockCode"
         - name: "證券名稱"
           in: formData
           description: Update data of the stock name.
           type: string
+          $ref: "#/definitions/StockName"
       responses:
         200:
           description: OK
@@ -113,6 +115,7 @@ paths:
           description: Rank that needs to be updated.
           required: true
           type: integer
+          $ref: "#/definitions/Rank"
         - name: body
           in: body
           description: Updated stock object
@@ -143,6 +146,7 @@ paths:
           description: Rank to delete
           type: integer
           required: true
+          $ref: "#/definitions/Rank"
       responses:
         400:
           description: "Invalid rank supplied"
@@ -162,7 +166,7 @@ paths:
           in: path
           description: Rank of stock code to return
           required: true
-          type: integer
+          $ref: "#/definitions/StockCode"
       responses:
         200:
           description: Success
@@ -188,15 +192,16 @@ paths:
           in: path
           description: Rank of stock that needs to be updated.
           type: integer
+          $ref: "#/definitions/Rank"
         - name: "證券代號"
           in: formData
           description: Update data of the stock code.
           required: true
-          type: string
+          $ref: "#/definitions/StockCode"
         - name: "證券名稱"
           in: formData
           description: Update data of the stock name.
-          type: string
+          $ref: "#/definitions/StockName"
       responses:
         200:
           description: OK
@@ -218,7 +223,7 @@ paths:
           in: path
           description: Stock code that needs to be updated.
           required: true
-          type: string
+          $ref: "#/definitions/StockCode"
         - name: body
           in: body
           description: Updated stock object
@@ -247,8 +252,8 @@ paths:
         - name: "證券代號"
           in: path
           description: stock code to delete
-          type: string
           required: true
+          $ref: "#/definitions/StockCode"
       responses:
         400:
           description: "Invalid stock code supplied"
@@ -309,6 +314,23 @@ demo:
         type: string
       "最後揭示賣價":
         type: string
+  example:
+    [
+      {
+        "排名": 1,
+        "證券代號": "00632R",
+        "證券名稱": "元大台灣50反1",
+        "成交股數": "182,725,585",
+        "成交筆數": "6,953",
+        "開盤價": "5.94",
+        "最高價": "5.98",
+        "最低價": "5.92",
+        "收盤價": "5.93",
+        "漲跌價差": "0.05",
+        "最後揭示買價": "5.92",
+        "最後揭示賣價": "5.93",
+      },
+    ]
 
 definitions:
   Stock:
@@ -368,3 +390,63 @@ definitions:
         type: string
       "最後揭示賣價":
         type: string
+  Rank:
+    name: "排名"
+    in: path
+    type: integer
+    enum:
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  StockCode:
+    name: "證券代號"
+    in: formData
+    type: string
+    enum:
+      [
+        "00632R",
+        "00673R",
+        "2609",
+        "2610",
+        "2409",
+        "00715L",
+        "3481",
+        "2303",
+        "2618",
+        "3047",
+        "2367",
+        "6443",
+        "00637L",
+        "2330",
+        "2888",
+        "2890",
+        "00878",
+        "2834",
+        "6235",
+        "2498",
+      ]
+  StockName:
+    name: "證券名稱"
+    in: formData
+    type: string
+    enum:
+      [
+        "元大台灣50反1",
+        "期元大S&P原油反1",
+        "陽明",
+        "華航",
+        "友達",
+        "期街口布蘭特正2",
+        "群創",
+        "聯電",
+        "長榮航",
+        "訊舟",
+        "燿華",
+        "元晶",
+        "元大滬深300正2",
+        "台積電",
+        "新光金",
+        "永豐金",
+        "國泰永續高股息",
+        "臺企銀",
+        "華孚",
+        "宏達電",
+      ]

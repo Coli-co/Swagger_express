@@ -282,5 +282,10 @@ const data = [
 ]
 
 
-module.exports = { stockData : data }
+// let box = []
 
+// data.forEach((item) => {
+//   box.push(item['排名'])
+// })
+
+// console.log(box)
