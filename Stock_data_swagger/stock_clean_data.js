@@ -282,10 +282,11 @@ const data = [
 ]
 
 
-// let box = []
+let box = []
 
-// data.forEach((item) => {
-//   box.push(item['排名'])
-// })
+data.forEach((item) => {
+  const num = parseFloat((item["最後揭示賣價"]))
+  box.push(num)
+})
 
 // console.log(box)
