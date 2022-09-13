@@ -40,7 +40,7 @@ paths:
         200:
           description: Success
           schema:
-            $ref: "#/definitions/demo"
+            $ref: "#/definitions/Demo"
 
   #  Return stock data by rank (get, post, put)
   /stock/{rank}:
@@ -283,7 +283,7 @@ paths:
           description: "Invalid input"
 
 definitions:
-  demo:
+  Demo:
     type: array
     items:
       type: object
@@ -590,7 +590,7 @@ definitions:
             ]
   Stock:
     oneOf:
-      - $ref: "#/definitions/demo"
+      - $ref: "#/definitions/Demo"
     example:
       [
         {
@@ -610,7 +610,7 @@ definitions:
       ]
   EachStock:
     oneOf:
-      - $ref: "#/definitions/demo"
+      - $ref: "#/definitions/Demo"
     example:
       [
         {
